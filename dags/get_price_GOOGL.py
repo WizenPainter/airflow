@@ -2,9 +2,9 @@ from airflow import DAG
 from airflow.decorators import task
 from datetime import datetime
 
-with DAG(dag_id="get_price_FB",
+with DAG(dag_id="get_price_GOOGL",
         start_date=datetime(2024,1,31),
-        schedule_interval="@weekly",
+        schedule_interval="@daily",
         catchup=False) as dag:
 
     @task
@@ -19,4 +19,4 @@ with DAG(dag_id="get_price_FB",
     def store(symbol):
         return symbol
 
-    store(process(extract(123)))
+    store(process(extract(3243)))
