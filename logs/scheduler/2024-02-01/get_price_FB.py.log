@@ -433,3 +433,33 @@
 [2024-02-01 14:50:35,528] {logging_mixin.py:115} INFO - [2024-02-01 14:50:35,528] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
 [2024-02-01 14:50:35,542] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
 [2024-02-01 14:50:35,550] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.027 seconds
+[2024-02-01 14:51:05,727] {processor.py:153} INFO - Started process (PID=5239) to work on /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:51:05,728] {processor.py:641} INFO - Processing file /opt/airflow/dags/get_price_FB.py for tasks to queue
+[2024-02-01 14:51:05,729] {logging_mixin.py:115} INFO - [2024-02-01 14:51:05,729] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:51:05,754] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:51:05,771] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.048 seconds
+[2024-02-01 14:51:36,027] {processor.py:153} INFO - Started process (PID=5292) to work on /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:51:36,028] {processor.py:641} INFO - Processing file /opt/airflow/dags/get_price_FB.py for tasks to queue
+[2024-02-01 14:51:36,029] {logging_mixin.py:115} INFO - [2024-02-01 14:51:36,029] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:51:36,050] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:51:36,063] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.040 seconds
+[2024-02-01 14:52:06,195] {processor.py:153} INFO - Started process (PID=5354) to work on /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:52:06,196] {processor.py:641} INFO - Processing file /opt/airflow/dags/get_price_FB.py for tasks to queue
+[2024-02-01 14:52:06,197] {logging_mixin.py:115} INFO - [2024-02-01 14:52:06,197] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:52:06,222] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:52:06,238] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.047 seconds
+[2024-02-01 14:52:36,429] {processor.py:153} INFO - Started process (PID=5415) to work on /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:52:36,430] {processor.py:641} INFO - Processing file /opt/airflow/dags/get_price_FB.py for tasks to queue
+[2024-02-01 14:52:36,430] {logging_mixin.py:115} INFO - [2024-02-01 14:52:36,430] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:52:36,453] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:52:36,464] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.039 seconds
+[2024-02-01 14:53:06,696] {processor.py:153} INFO - Started process (PID=5477) to work on /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:53:06,698] {processor.py:641} INFO - Processing file /opt/airflow/dags/get_price_FB.py for tasks to queue
+[2024-02-01 14:53:06,699] {logging_mixin.py:115} INFO - [2024-02-01 14:53:06,699] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:53:06,728] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:53:06,740] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.049 seconds
+[2024-02-01 14:53:36,994] {processor.py:153} INFO - Started process (PID=5538) to work on /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:53:36,995] {processor.py:641} INFO - Processing file /opt/airflow/dags/get_price_FB.py for tasks to queue
+[2024-02-01 14:53:36,996] {logging_mixin.py:115} INFO - [2024-02-01 14:53:36,996] {dagbag.py:507} INFO - Filling up the DagBag from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:53:37,019] {processor.py:653} WARNING - No viable dags retrieved from /opt/airflow/dags/get_price_FB.py
+[2024-02-01 14:53:37,029] {processor.py:161} INFO - Processing /opt/airflow/dags/get_price_FB.py took 0.039 seconds
