@@ -1,4 +1,0 @@
-dag_id: 'GOOGL'
-schedule_interval: '@daily'
-catchup: False
-input: 3243

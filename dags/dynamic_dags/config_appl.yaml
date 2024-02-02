@@ -1,4 +1,0 @@
-dag_id: 'APPL'
-schedule_interval: '@weekly'
-catchup: False
-input: 1234
