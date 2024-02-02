@@ -1,73 +1,75 @@
+"""
+This file holds the DAG Factory
+"""
+
 from airflow import DAG
-from airflow.utils.module_loading import import_string
-from datetime import datetime
-from importlib import import_module
-import yaml
+from airflow.operators.python_operator import PythonOperator
+from datetime import datetime, timedelta
 
+class DAGFactory:
+    """
+    Class that provides a useful method to build an Airflow DAG
+    """
 
-def read_config(config_filepath: str) -> dict:
-    return yaml.load(
-        stream=open(config_filepath, "r", encoding="utf-8"),
-        Loader=yaml.FullLoader,
-    )
+    @classmethod
+    def create_dag(cls, dagname: str, default_args: dict = {}, catchup: bool = False, concurrency: int = 5, cron: str = None):
+        """
+        params: 
+        """
+        DEFAULT_ARGS = {
+            'owner': 'Jaime',
+            'depends_on_past': False,
+            'start_date': datetime(2024, 02, 02),
+            'email': ['jaime.guzman@norteanalytics.com'],
+            'email_on_failure': True,
+            'email_on_retry': False,
+            'retries': 1,
+            'retry_delay': timedelta(minutes=5)
+        }
+        
+        DEFAULT_ARGS.update(default_args)
+        dagargs = {
+            'default_args': DEFAULT_ARGS,
+            'schedule_interval': cron,
+            'catchup': catchup,
+            'concurrency': concurrency
+        }
 
-def import_modules(module_path: str):
-    module_name, class_name = module_path.rsplit(".", 1)
-    module = import_module(module_name)
-    callable = getattr(module, class_name)
+        dag = DAG(dagname, **dagargs)
+        return dag
 
-    return callable
+    @classmethod
+    def add_tasks_to_dag(cls, dag: DAG, tasks: dict) -> DAG:
+        """
+        adds tasks to the dag
+        params:
+          dag: DAG object
+          tasks(dict): dictionary with the tasks to be added to the dag
+        """
+        with dag as dag:
+            aux_dict = {}
 
-def create_task(task_config: dict, task_mapper, dag):
-    task_id = task_config['task_id']
-    operator_path = task_config['operator']
-    params = task_config['params']
-    upstream_tasks = task_config.get('upstream', [])
+            for func in tasks:
+                task_id = func.__name__
+                task = PythonOperator(
+                    task_id=task_id,
+                    python_callable=func,
+                    dag=dag
+                )
+                aux_dict[task_id] = task
 
-    operator_class = import_modules(operator_path)
+            for func, dependencies in tasks.items():
+                task_id = func.__name__
+                for dependency in dependencies:
+                    aux_dict[dependency.__name__] >> aux_dict[task_id]
+        
+        return dag
 
-    callable = params.get('python_callable')
-    if callable:
-      params['python_callable'] = import_string(callable)
-
-    task = operator_class(
-        task_id=task_id,
-        dag=dag,
-        **params
-    )
-
-    for upstream_task_id in upstream_tasks:
-        upstream_task = task_mapper.get(upstream_task_id)
-        if upstream_task:
-            task.set_upstream(upstream_task)
-
-    return task
-
-def create_dag(config_filepath: str, globals: dict) -> DAG:
-    cfg = read_config(config_filepath)
-
-    dag_id = cfg['airflow']['dag_id']
-    schedule_interval = cfg['airflow']['schedule_interval']
-
-    year, month, date = list(map(int, cfg['airflow']['start_date'].split('-')))
-
-    default_args = {
-        "owner": cfg['airflow']['dag_id'],
-        "start_date": datetime(year, month, date)
-    }
-
-    dag = DAG(
-        dag_id=dag_id,
-        default_args=default_args,
-        schedule_interval=schedule_interval,
-    )
-
-    task_mapper = {}
-
-    for task_config in cfg['tasks']:
-        task = create_task(task_config, task_mapper, dag)
-        task_mapper[task.task_id] = task
-
-    globals[dag.dag_id] = dag
-
-    return dag
+    @classmethod
+    def get_airflow_dag(cls, dagname, tasks, default_args: dict ={}, catchup: bool = False, concurrency: int = 5, cron: str = None):
+        """
+        Method used to create the dags
+        """
+        dag = cls.create_dag(dagname, default_args, catchup, concurrency, cron)
+        dag = cls.add_tasks_to_dag(dag, tasks)
+        return dag

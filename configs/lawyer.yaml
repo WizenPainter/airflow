@@ -1,0 +1,26 @@
+airflow:
+  dag_id: lawyer_pipeline
+  start_date: '2024-02-01'
+  schedule_interval: "@weekly"
+
+tasks:
+  - task_id: create_lawyer
+    operator: airflow.operators.python.PythonOperator
+    params:
+      python_callable: objection.Objection
+      op_kwargs:
+        sauce: 'specter'
+        evidence: false
+        anger_leve: 7
+
+  - task_id: open_trial
+    operator: airflow.operators.python.PythonOperator
+    params:
+      python_callable: objection.Objection.open_trial
+    upstream: [create_lawyer]
+
+  - task_id: get_advice
+    operator: airflow.operators.python.PythonOperator
+    params:
+      python_callable: objection.Objection.give_advice
+    upstream: [open_trial]
